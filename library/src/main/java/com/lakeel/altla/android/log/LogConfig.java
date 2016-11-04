@@ -14,6 +14,8 @@ public final class LogConfig {
 
     private boolean mIsErrorEnabled;
 
+    private LogFormatter formatter;
+
     public boolean isFullyQualifiedClassNameUsed() {
         return mIsFullyQualifiedClassNameUsed;
     }
@@ -38,6 +40,10 @@ public final class LogConfig {
         return mIsErrorEnabled;
     }
 
+    public LogFormatter getFormatter() {
+        return formatter;
+    }
+
     public static class Builder {
 
         private boolean mIsFullyQualifiedClassNameUsed;
@@ -52,6 +58,8 @@ public final class LogConfig {
 
         private boolean mIsErrorEnabled = true;
 
+        private LogFormatter formatter = DefaultLogFormatter.INSTANCE;
+
         public LogConfig build() {
             LogConfig config = new LogConfig();
             config.mIsFullyQualifiedClassNameUsed = mIsFullyQualifiedClassNameUsed;
@@ -60,6 +68,7 @@ public final class LogConfig {
             config.mIsInfoEnabled = mIsInfoEnabled;
             config.mIsWarnEnabled = mIsWarnEnabled;
             config.mIsErrorEnabled = mIsErrorEnabled;
+            config.formatter = formatter;
             return config;
         }
 
@@ -90,6 +99,13 @@ public final class LogConfig {
 
         public Builder setErrorEnabled(boolean errorEnabled) {
             mIsErrorEnabled = errorEnabled;
+            return this;
+        }
+
+        public Builder setFormatter(LogFormatter formatter) {
+            if (formatter == null) throw new IllegalArgumentException("'formatter' must be not null.");
+
+            this.formatter = formatter;
             return this;
         }
     }
