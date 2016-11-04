@@ -5,8 +5,6 @@ package com.lakeel.altla.android.log;
  */
 public final class Log {
 
-    private static final MessageBuilder BUILDER = new MessageBuilder();
-
     private final String mTag;
 
     private final LogConfig mConfig;
@@ -31,7 +29,7 @@ public final class Log {
      */
     public void v(String message) {
         if (mConfig.isVerboseEnabled()) {
-            android.util.Log.v(mTag, BUILDER.build(mClassName, message));
+            android.util.Log.v(mTag, mConfig.getFormatter().format(mClassName, message));
         }
     }
 
@@ -43,7 +41,7 @@ public final class Log {
      */
     public void v(String format, Object... args) {
         if (mConfig.isVerboseEnabled()) {
-            android.util.Log.v(mTag, BUILDER.build(mClassName, format, args));
+            android.util.Log.v(mTag, mConfig.getFormatter().format(mClassName, format, args));
         }
     }
 
@@ -54,7 +52,7 @@ public final class Log {
      */
     public void d(String message) {
         if (mConfig.isDebugEnabled()) {
-            android.util.Log.d(mTag, BUILDER.build(mClassName, message));
+            android.util.Log.d(mTag, mConfig.getFormatter().format(mClassName, message));
         }
     }
 
@@ -66,7 +64,7 @@ public final class Log {
      */
     public void d(String format, Object... args) {
         if (mConfig.isDebugEnabled()) {
-            android.util.Log.d(mTag, BUILDER.build(mClassName, format, args));
+            android.util.Log.d(mTag, mConfig.getFormatter().format(mClassName, format, args));
         }
     }
 
@@ -77,7 +75,7 @@ public final class Log {
      */
     public void i(String message) {
         if (mConfig.isInfoEnabled()) {
-            android.util.Log.i(mTag, BUILDER.build(mClassName, message));
+            android.util.Log.i(mTag, mConfig.getFormatter().format(mClassName, message));
         }
     }
 
@@ -89,7 +87,7 @@ public final class Log {
      */
     public void i(String format, Object... args) {
         if (mConfig.isInfoEnabled()) {
-            android.util.Log.i(mTag, BUILDER.build(mClassName, format, args));
+            android.util.Log.i(mTag, mConfig.getFormatter().format(mClassName, format, args));
         }
     }
 
@@ -100,7 +98,7 @@ public final class Log {
      */
     public void w(String message) {
         if (mConfig.isWarnEnabled()) {
-            android.util.Log.w(mTag, BUILDER.build(mClassName, message));
+            android.util.Log.w(mTag, mConfig.getFormatter().format(mClassName, message));
         }
     }
 
@@ -112,7 +110,7 @@ public final class Log {
      */
     public void w(String format, Object... args) {
         if (mConfig.isWarnEnabled()) {
-            android.util.Log.w(mTag, BUILDER.build(mClassName, format, args));
+            android.util.Log.w(mTag, mConfig.getFormatter().format(mClassName, format, args));
         }
     }
 
@@ -124,7 +122,7 @@ public final class Log {
      */
     public void w(String message, Throwable throwable) {
         if (mConfig.isWarnEnabled()) {
-            android.util.Log.w(mTag, BUILDER.build(mClassName, message), throwable);
+            android.util.Log.w(mTag, mConfig.getFormatter().format(mClassName, message), throwable);
         }
     }
 
@@ -135,7 +133,7 @@ public final class Log {
      */
     public void e(String message) {
         if (mConfig.isErrorEnabled()) {
-            android.util.Log.e(mTag, BUILDER.build(mClassName, message));
+            android.util.Log.e(mTag, mConfig.getFormatter().format(mClassName, message));
         }
     }
 
@@ -147,7 +145,7 @@ public final class Log {
      */
     public void e(String format, Object... args) {
         if (mConfig.isErrorEnabled()) {
-            android.util.Log.e(mTag, BUILDER.build(mClassName, format, args));
+            android.util.Log.e(mTag, mConfig.getFormatter().format(mClassName, format, args));
         }
     }
 
@@ -159,21 +157,7 @@ public final class Log {
      */
     public void e(String message, Throwable throwable) {
         if (mConfig.isErrorEnabled()) {
-            android.util.Log.e(mTag, BUILDER.build(mClassName, message), throwable);
-        }
-    }
-
-    private static class MessageBuilder {
-
-        private static final String BASE_FORMAT = "[%s] [%s] %s";
-
-        String build(String className, String message) {
-            return String.format(BASE_FORMAT, Thread.currentThread().getName(), className, message);
-        }
-
-        String build(String className, String format, Object... args) {
-            String message = String.format(format, args);
-            return String.format(BASE_FORMAT, Thread.currentThread().getName(), className, message);
+            android.util.Log.e(mTag, mConfig.getFormatter().format(mClassName, message), throwable);
         }
     }
 }
