@@ -7,23 +7,23 @@ public final class LogFactory {
 
     private static final String TAG_DEFAULT = "DEFAULT";
 
-    private static boolean sIsDebug;
+    private static boolean debug;
 
-    private static String sTag = TAG_DEFAULT;
+    private static String tag = TAG_DEFAULT;
 
-    private static LogConfig sDebugConfig = new LogConfig.Builder().build();
+    private static LogConfig debugConfig = new LogConfig.Builder().build();
 
-    private static LogConfig sReleaseConfig = new LogConfig.Builder().setVerboseEnabled(false)
-                                                                     .setDebugEnabled(false)
-                                                                     .build();
+    private static LogConfig releaseConfig = new LogConfig.Builder().setVerboseEnabled(false)
+                                                                    .setDebugEnabled(false)
+                                                                    .build();
 
     /**
      * Sets BuildConfig.DEBUG of your application.
      *
-     * @param isDebug BuildConfig.DEBUG of your application.
+     * @param debug BuildConfig.DEBUG of your application.
      */
-    public static void setDebug(boolean isDebug) {
-        sIsDebug = isDebug;
+    public static void setDebug(boolean debug) {
+        LogFactory.debug = debug;
     }
 
     /**
@@ -35,7 +35,7 @@ public final class LogFactory {
         if (tag == null || tag.length() == 0) {
             throw new IllegalArgumentException("tag is null/empty.");
         }
-        sTag = tag;
+        LogFactory.tag = tag;
     }
 
     /**
@@ -44,7 +44,7 @@ public final class LogFactory {
      * @param config The configuration for the debug build.
      */
     public static void setDebugConfig(LogConfig config) {
-        sDebugConfig = config;
+        debugConfig = config;
     }
 
     /**
@@ -53,7 +53,7 @@ public final class LogFactory {
      * @param config The configuration for the release build.
      */
     public static void setReleaseConfig(LogConfig config) {
-        sReleaseConfig = config;
+        releaseConfig = config;
     }
 
     /**
@@ -63,7 +63,7 @@ public final class LogFactory {
      * @return a android.util.Log wrapper.
      */
     public static Log getLog(Class<?> clazz) {
-        LogConfig config = sIsDebug ? sDebugConfig : sReleaseConfig;
-        return new Log(sTag, config, clazz);
+        LogConfig config = debug ? debugConfig : releaseConfig;
+        return new Log(tag, config, clazz);
     }
 }

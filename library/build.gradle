@@ -1,17 +1,13 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.1"
-//    publishNonDefault true
-
+    compileSdkVersion project.ext.compileSdkVersion
+    buildToolsVersion project.ext.buildToolsVersion
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode project.ext.versionCode
+        versionName project.ext.versionName
     }
     buildTypes {
         release {
@@ -22,11 +18,7 @@ android {
 }
 
 dependencies {
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    testCompile 'junit:junit:4.12'
+    compile "com.android.support:appcompat-v7:$supportVersion"
 }
 
 // maven plugin to deploy this aar.
@@ -48,7 +40,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository url: "file://${uploadRepo}"
-            pom.version = '0.0.2'
+            pom.version = project.ext.versionName
             pom.groupId = 'com.lakeel.altla'
             pom.artifactId = 'android-log'
         }
