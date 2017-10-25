@@ -64,6 +64,20 @@ public final class LogFactory {
      */
     public static Log getLog(Class<?> clazz) {
         LogConfig config = debug ? debugConfig : releaseConfig;
-        return new Log(tag, config, clazz);
+        String coreClassName = config.getLogCoreClassName();
+        try {
+            Class<?> coreClass = Class.forName(coreClassName);
+            LogCore core = (LogCore) coreClass.newInstance();
+            return new Log(core, tag, config, clazz);
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+            throw new LogFactoryException(e);
+        }
+    }
+
+    public static class LogFactoryException extends RuntimeException {
+
+        private LogFactoryException(Throwable cause) {
+            super(cause);
+        }
     }
 }
