@@ -2,42 +2,42 @@ package com.lakeel.altla.android.log;
 
 public final class LogConfig {
 
-    private boolean mIsFullyQualifiedClassNameUsed;
+    private boolean fullyQualifiedClassNameUsed;
 
-    private boolean mIsVerboseEnabled;
+    private boolean verboseEnabled;
 
-    private boolean mIsDebugEnabled;
+    private boolean debugEnabled;
 
-    private boolean mIsInfoEnabled;
+    private boolean infoEnabled;
 
-    private boolean mIsWarnEnabled;
+    private boolean warnEnabled;
 
-    private boolean mIsErrorEnabled;
+    private boolean errorEnabled;
 
     private LogFormatter formatter;
 
     public boolean isFullyQualifiedClassNameUsed() {
-        return mIsFullyQualifiedClassNameUsed;
+        return fullyQualifiedClassNameUsed;
     }
 
     public boolean isVerboseEnabled() {
-        return mIsVerboseEnabled;
+        return verboseEnabled;
     }
 
     public boolean isDebugEnabled() {
-        return mIsDebugEnabled;
+        return debugEnabled;
     }
 
     public boolean isInfoEnabled() {
-        return mIsInfoEnabled;
+        return infoEnabled;
     }
 
     public boolean isWarnEnabled() {
-        return mIsWarnEnabled;
+        return warnEnabled;
     }
 
     public boolean isErrorEnabled() {
-        return mIsErrorEnabled;
+        return errorEnabled;
     }
 
     public LogFormatter getFormatter() {
@@ -46,59 +46,59 @@ public final class LogConfig {
 
     public static class Builder {
 
-        private boolean mIsFullyQualifiedClassNameUsed;
+        private boolean fullyQualifiedClassNameUsed;
 
-        private boolean mIsVerboseEnabled = true;
+        private boolean verboseEnabled = true;
 
-        private boolean mIsDebugEnabled = true;
+        private boolean debugEnabled = true;
 
-        private boolean mIsInfoEnabled = true;
+        private boolean infoEnabled = true;
 
-        private boolean mIsWarnEnabled = true;
+        private boolean warnEnabled = true;
 
-        private boolean mIsErrorEnabled = true;
+        private boolean errorEnabled = true;
 
         private LogFormatter formatter = DefaultLogFormatter.INSTANCE;
 
         public LogConfig build() {
             LogConfig config = new LogConfig();
-            config.mIsFullyQualifiedClassNameUsed = mIsFullyQualifiedClassNameUsed;
-            config.mIsVerboseEnabled = mIsVerboseEnabled;
-            config.mIsDebugEnabled = mIsDebugEnabled;
-            config.mIsInfoEnabled = mIsInfoEnabled;
-            config.mIsWarnEnabled = mIsWarnEnabled;
-            config.mIsErrorEnabled = mIsErrorEnabled;
+            config.fullyQualifiedClassNameUsed = fullyQualifiedClassNameUsed;
+            config.verboseEnabled = verboseEnabled;
+            config.debugEnabled = debugEnabled;
+            config.infoEnabled = infoEnabled;
+            config.warnEnabled = warnEnabled;
+            config.errorEnabled = errorEnabled;
             config.formatter = formatter;
             return config;
         }
 
         public Builder setFullyQualifiedClassNameUsed(boolean fullyQualifiedClassNameUsed) {
-            this.mIsFullyQualifiedClassNameUsed = fullyQualifiedClassNameUsed;
+            this.fullyQualifiedClassNameUsed = fullyQualifiedClassNameUsed;
             return this;
         }
 
         public Builder setVerboseEnabled(boolean verboseEnabled) {
-            mIsVerboseEnabled = verboseEnabled;
+            this.verboseEnabled = verboseEnabled;
             return this;
         }
 
         public Builder setDebugEnabled(boolean debugEnabled) {
-            mIsDebugEnabled = debugEnabled;
+            this.debugEnabled = debugEnabled;
             return this;
         }
 
         public Builder setInfoEnabled(boolean infoEnabled) {
-            mIsInfoEnabled = infoEnabled;
+            this.infoEnabled = infoEnabled;
             return this;
         }
 
         public Builder setWarnEnabled(boolean warnEnabled) {
-            mIsWarnEnabled = warnEnabled;
+            this.warnEnabled = warnEnabled;
             return this;
         }
 
         public Builder setErrorEnabled(boolean errorEnabled) {
-            mIsErrorEnabled = errorEnabled;
+            this.errorEnabled = errorEnabled;
             return this;
         }
 
