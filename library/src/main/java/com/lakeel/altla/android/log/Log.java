@@ -5,13 +5,16 @@ package com.lakeel.altla.android.log;
  */
 public final class Log {
 
+    private final LogCore core;
+
     private final String tag;
 
     private final LogConfig config;
 
     private final String className;
 
-    Log(String tag, LogConfig config, Class<?> clazz) {
+    Log(LogCore core, String tag, LogConfig config, Class<?> clazz) {
+        this.core = core;
         this.tag = tag;
         this.config = config;
 
@@ -29,7 +32,7 @@ public final class Log {
      */
     public void v(String message) {
         if (config.isVerboseEnabled()) {
-            android.util.Log.v(tag, config.getFormatter().format(className, message));
+            core.v(tag, config.getFormatter().format(className, message));
         }
     }
 
@@ -41,7 +44,7 @@ public final class Log {
      */
     public void v(String format, Object... args) {
         if (config.isVerboseEnabled()) {
-            android.util.Log.v(tag, config.getFormatter().format(className, format, args));
+            core.v(tag, config.getFormatter().format(className, format, args));
         }
     }
 
@@ -52,7 +55,7 @@ public final class Log {
      */
     public void d(String message) {
         if (config.isDebugEnabled()) {
-            android.util.Log.d(tag, config.getFormatter().format(className, message));
+            core.d(tag, config.getFormatter().format(className, message));
         }
     }
 
@@ -64,7 +67,7 @@ public final class Log {
      */
     public void d(String format, Object... args) {
         if (config.isDebugEnabled()) {
-            android.util.Log.d(tag, config.getFormatter().format(className, format, args));
+            core.d(tag, config.getFormatter().format(className, format, args));
         }
     }
 
@@ -75,7 +78,7 @@ public final class Log {
      */
     public void i(String message) {
         if (config.isInfoEnabled()) {
-            android.util.Log.i(tag, config.getFormatter().format(className, message));
+            core.i(tag, config.getFormatter().format(className, message));
         }
     }
 
@@ -87,7 +90,7 @@ public final class Log {
      */
     public void i(String format, Object... args) {
         if (config.isInfoEnabled()) {
-            android.util.Log.i(tag, config.getFormatter().format(className, format, args));
+            core.i(tag, config.getFormatter().format(className, format, args));
         }
     }
 
@@ -98,7 +101,7 @@ public final class Log {
      */
     public void w(String message) {
         if (config.isWarnEnabled()) {
-            android.util.Log.w(tag, config.getFormatter().format(className, message));
+            core.w(tag, config.getFormatter().format(className, message));
         }
     }
 
@@ -110,7 +113,7 @@ public final class Log {
      */
     public void w(String format, Object... args) {
         if (config.isWarnEnabled()) {
-            android.util.Log.w(tag, config.getFormatter().format(className, format, args));
+            core.w(tag, config.getFormatter().format(className, format, args));
         }
     }
 
@@ -122,7 +125,7 @@ public final class Log {
      */
     public void w(String message, Throwable throwable) {
         if (config.isWarnEnabled()) {
-            android.util.Log.w(tag, config.getFormatter().format(className, message), throwable);
+            core.w(tag, config.getFormatter().format(className, message), throwable);
         }
     }
 
@@ -133,7 +136,7 @@ public final class Log {
      */
     public void e(String message) {
         if (config.isErrorEnabled()) {
-            android.util.Log.e(tag, config.getFormatter().format(className, message));
+            core.e(tag, config.getFormatter().format(className, message));
         }
     }
 
@@ -145,7 +148,7 @@ public final class Log {
      */
     public void e(String format, Object... args) {
         if (config.isErrorEnabled()) {
-            android.util.Log.e(tag, config.getFormatter().format(className, format, args));
+            core.e(tag, config.getFormatter().format(className, format, args));
         }
     }
 
@@ -157,7 +160,7 @@ public final class Log {
      */
     public void e(String message, Throwable throwable) {
         if (config.isErrorEnabled()) {
-            android.util.Log.e(tag, config.getFormatter().format(className, message), throwable);
+            core.e(tag, config.getFormatter().format(className, message), throwable);
         }
     }
 }

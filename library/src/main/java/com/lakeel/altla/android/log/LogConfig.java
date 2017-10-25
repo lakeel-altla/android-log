@@ -16,6 +16,8 @@ public final class LogConfig {
 
     private LogFormatter formatter;
 
+    private String logCoreClassName;
+
     public boolean isFullyQualifiedClassNameUsed() {
         return fullyQualifiedClassNameUsed;
     }
@@ -44,6 +46,10 @@ public final class LogConfig {
         return formatter;
     }
 
+    public String getLogCoreClassName() {
+        return logCoreClassName;
+    }
+
     public static class Builder {
 
         private boolean fullyQualifiedClassNameUsed;
@@ -60,6 +66,8 @@ public final class LogConfig {
 
         private LogFormatter formatter = DefaultLogFormatter.INSTANCE;
 
+        private String logCoreClassName = DefaultLogCore.class.getName();
+
         public LogConfig build() {
             LogConfig config = new LogConfig();
             config.fullyQualifiedClassNameUsed = fullyQualifiedClassNameUsed;
@@ -69,6 +77,7 @@ public final class LogConfig {
             config.warnEnabled = warnEnabled;
             config.errorEnabled = errorEnabled;
             config.formatter = formatter;
+            config.logCoreClassName = logCoreClassName;
             return config;
         }
 
@@ -106,6 +115,11 @@ public final class LogConfig {
             if (formatter == null) throw new IllegalArgumentException("'formatter' must be not null.");
 
             this.formatter = formatter;
+            return this;
+        }
+
+        public Builder setLogCoreClassName(String logCoreClassName) {
+            this.logCoreClassName = logCoreClassName;
             return this;
         }
     }
