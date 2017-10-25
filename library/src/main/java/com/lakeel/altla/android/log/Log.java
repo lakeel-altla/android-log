@@ -5,20 +5,20 @@ package com.lakeel.altla.android.log;
  */
 public final class Log {
 
-    private final String mTag;
+    private final String tag;
 
-    private final LogConfig mConfig;
+    private final LogConfig config;
 
-    private final String mClassName;
+    private final String className;
 
     Log(String tag, LogConfig config, Class<?> clazz) {
-        mTag = tag;
-        mConfig = config;
+        this.tag = tag;
+        this.config = config;
 
-        if (mConfig.isFullyQualifiedClassNameUsed()) {
-            mClassName = clazz.getName();
+        if (this.config.isFullyQualifiedClassNameUsed()) {
+            className = clazz.getName();
         } else {
-            mClassName = clazz.getSimpleName();
+            className = clazz.getSimpleName();
         }
     }
 
@@ -28,8 +28,8 @@ public final class Log {
      * @param message A message.
      */
     public void v(String message) {
-        if (mConfig.isVerboseEnabled()) {
-            android.util.Log.v(mTag, mConfig.getFormatter().format(mClassName, message));
+        if (config.isVerboseEnabled()) {
+            android.util.Log.v(tag, config.getFormatter().format(className, message));
         }
     }
 
@@ -40,8 +40,8 @@ public final class Log {
      * @param args   Arguments referenced in the format string.
      */
     public void v(String format, Object... args) {
-        if (mConfig.isVerboseEnabled()) {
-            android.util.Log.v(mTag, mConfig.getFormatter().format(mClassName, format, args));
+        if (config.isVerboseEnabled()) {
+            android.util.Log.v(tag, config.getFormatter().format(className, format, args));
         }
     }
 
@@ -51,8 +51,8 @@ public final class Log {
      * @param message A message.
      */
     public void d(String message) {
-        if (mConfig.isDebugEnabled()) {
-            android.util.Log.d(mTag, mConfig.getFormatter().format(mClassName, message));
+        if (config.isDebugEnabled()) {
+            android.util.Log.d(tag, config.getFormatter().format(className, message));
         }
     }
 
@@ -63,8 +63,8 @@ public final class Log {
      * @param args   Arguments referenced in the format string.
      */
     public void d(String format, Object... args) {
-        if (mConfig.isDebugEnabled()) {
-            android.util.Log.d(mTag, mConfig.getFormatter().format(mClassName, format, args));
+        if (config.isDebugEnabled()) {
+            android.util.Log.d(tag, config.getFormatter().format(className, format, args));
         }
     }
 
@@ -74,8 +74,8 @@ public final class Log {
      * @param message A message.
      */
     public void i(String message) {
-        if (mConfig.isInfoEnabled()) {
-            android.util.Log.i(mTag, mConfig.getFormatter().format(mClassName, message));
+        if (config.isInfoEnabled()) {
+            android.util.Log.i(tag, config.getFormatter().format(className, message));
         }
     }
 
@@ -86,8 +86,8 @@ public final class Log {
      * @param args   Arguments referenced in the format string.
      */
     public void i(String format, Object... args) {
-        if (mConfig.isInfoEnabled()) {
-            android.util.Log.i(mTag, mConfig.getFormatter().format(mClassName, format, args));
+        if (config.isInfoEnabled()) {
+            android.util.Log.i(tag, config.getFormatter().format(className, format, args));
         }
     }
 
@@ -97,8 +97,8 @@ public final class Log {
      * @param message A message.
      */
     public void w(String message) {
-        if (mConfig.isWarnEnabled()) {
-            android.util.Log.w(mTag, mConfig.getFormatter().format(mClassName, message));
+        if (config.isWarnEnabled()) {
+            android.util.Log.w(tag, config.getFormatter().format(className, message));
         }
     }
 
@@ -109,8 +109,8 @@ public final class Log {
      * @param args   Arguments referenced in the format string.
      */
     public void w(String format, Object... args) {
-        if (mConfig.isWarnEnabled()) {
-            android.util.Log.w(mTag, mConfig.getFormatter().format(mClassName, format, args));
+        if (config.isWarnEnabled()) {
+            android.util.Log.w(tag, config.getFormatter().format(className, format, args));
         }
     }
 
@@ -121,8 +121,8 @@ public final class Log {
      * @param throwable A throwable object.
      */
     public void w(String message, Throwable throwable) {
-        if (mConfig.isWarnEnabled()) {
-            android.util.Log.w(mTag, mConfig.getFormatter().format(mClassName, message), throwable);
+        if (config.isWarnEnabled()) {
+            android.util.Log.w(tag, config.getFormatter().format(className, message), throwable);
         }
     }
 
@@ -132,8 +132,8 @@ public final class Log {
      * @param message A message.
      */
     public void e(String message) {
-        if (mConfig.isErrorEnabled()) {
-            android.util.Log.e(mTag, mConfig.getFormatter().format(mClassName, message));
+        if (config.isErrorEnabled()) {
+            android.util.Log.e(tag, config.getFormatter().format(className, message));
         }
     }
 
@@ -144,8 +144,8 @@ public final class Log {
      * @param args   Arguments referenced in the format string.
      */
     public void e(String format, Object... args) {
-        if (mConfig.isErrorEnabled()) {
-            android.util.Log.e(mTag, mConfig.getFormatter().format(mClassName, format, args));
+        if (config.isErrorEnabled()) {
+            android.util.Log.e(tag, config.getFormatter().format(className, format, args));
         }
     }
 
@@ -156,8 +156,8 @@ public final class Log {
      * @param throwable A throwable object.
      */
     public void e(String message, Throwable throwable) {
-        if (mConfig.isErrorEnabled()) {
-            android.util.Log.e(mTag, mConfig.getFormatter().format(mClassName, message), throwable);
+        if (config.isErrorEnabled()) {
+            android.util.Log.e(tag, config.getFormatter().format(className, message), throwable);
         }
     }
 }
